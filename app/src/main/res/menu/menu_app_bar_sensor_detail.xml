@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- "Mark Favorite", should appear as action button if possible -->
+    <item
+    android:id="@+id/action_show_graph"
+    android:icon="@drawable/icons8linechart24"
+    android:title="@string/action_show_graph"
+    app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_show_manual"
+        android:icon="@drawable/icons8maintenance24"
+        android:title="@string/managewithsensor"
+        app:showAsAction="ifRoom" />
+    <!-- Settings, should always be in the overflow -->
+   <!-- <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/facebook"
+                android:title="TestLink" />
+        </menu>
+    </item>-->
+
+
+</menu>

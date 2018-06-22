@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--    <group android:checkableBehavior="single">
+        <item
+            andrIdd:idId@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Import" />
+        <item
+            andrIdd:idId@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Gallery" />
+        <item
+            andrIdd:idId@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Slideshow" />
+        <item
+            andrIdd:idId@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
+    </group>-->
+
+    <item android:title="@string/drawer_action_subtitle">
+        <menu>
+            <item
+                android:id="@+id/sensor_list"
+                android:icon="@mipmap/ic_home_black_24dp"
+                android:title="@string/sensor_list" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@mipmap/ic_lock_icon"
+                android:title="@string/drawer_menu_logout" />
+            <item
+                android:id="@+id/nav_add"
+                android:icon="@mipmap/ic_add_circle_outline_black"
+                android:visible="false"
+                android:title="@string/drawer_menu_add" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@mipmap/ic_settings_black_24dp"
+                android:title="@string/drawer_menu_settings"
+                />
+            <item
+                android:id="@+id/network_state"
+                android:icon="@mipmap/sensor_icon"
+                android:title="@string/drawer_menu_networks"
+                />
+        </menu>
+    </item>
+
+</menu>

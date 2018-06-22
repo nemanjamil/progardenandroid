@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Testing webView</title>
+    <script src="./highcharts.js"></script>
+    <script type="text/javascript">
+		var options = {
+    chart: {
+        renderTo: 'vlaznostTabela',
+        type: 'spline'
+    },
+    title: {
+        text: ''
+    },
+    credits: {
+        enabled: true, // Enable/Disable the credits
+        text: 'DirektnoIzBaste'
+    },
+    /* subtitle: {
+     text: 'May 31 and and June 1, 2015 at two locations in Vik i Sogn, Norway'
+     },*/
+    xAxis: {
+        type: 'datetime',
+        labels: {
+            align: 'center',
+            x: -3,
+            y: 20,
+            formatter: function() {
+                return Highcharts.dateFormat('%H:%m', this.value) + '<br/>'  + Highcharts.dateFormat('%y-%d-%m', this.value);
+            }
+        },
+
+
+       /* dateTimeLabelFormats: { // don't display the dummy year
+            minute: '%H:%M',
+            hour: '%H:%M',
+            day: '%e. %b',
+            week: '%e. %b',
+            month: '%b \'%y',
+            year: '%Y'
+        },*/
+        title: {
+            text: 'Vreme'
+        },
+        overflow: 'justify'
+    },
+
+
+    yAxis: {
+        title: {
+            text: ''
+        },
+        /*
+        alternateGridColor: null,
+         zoomEnabled: false,
+        */
+        gridLineWidth: 0,
+        minorGridLineWidth: 0,
+        min: '',
+        max: '',
+
+        tickInterval: 5,
+
+        plotBands: [{ // Zelena zona
+            from: '',
+            to: '',
+            color: 'rgba(0, 153, 0, 0.1)',
+            label: {
+                text: 'Zelena zona',
+                style: {
+                    color: '#606060'
+                }
+            }
+        }, { // Zuta Gore
+            from: '',
+            to: '',
+            color: 'rgba(255, 255, 0, 0.2)',
+            label: {
+                text: 'Zuta zona',
+                style: {
+                    color: '#606060'
+                }
+            }
+        }, { // Zuta dole
+            from: '',
+            to: '',
+            color: 'rgba(255, 255, 0, 0.2)',
+            label: {
+                text: 'Zuta zona',
+                style: {
+                    color: '#606060'
+                }
+            }
+        }, { // Crvena Gore
+            from: '',
+            to: '',
+            color: 'rgba(255, 102, 102, 0.1)',
+            label: {
+                text: 'Crvena zona',
+                style: {
+                    color: '#606060'
+                }
+            }
+        }, { // Crvena dole
+            from: '',
+            to: '',
+            color: 'rgba(255, 102, 102, 0.1)',
+            label: {
+                text: 'Crvena zona',
+                style: {
+                    color: '#606060'
+                }
+            }
+        }]
+    },
+    series: [{
+        name: ''
+       /* marker: {
+            enabled: true,
+            states: {
+                hover: {
+                    enabled: false
+                }
+            },
+            symbol: 'url(http://highcharts.com/demo/gfx/sun.png)'
+        }*/
+    }],
+    tooltip: {
+        valueSuffix: '',
+        enabled: true, // milance, vidi ovo sto sam iskljcio, ovo mi je smetalo kada na telefonu pomeram pristom
+        followTouchMove: false, //vidi da li ovo resava problem http://api.highcharts.com/highcharts#tooltip.followTouchMove
+        formatter: function () {
+            return '<b>' + this.y + '</b>';
+        }
+
+    },
+    navigation: {
+        menuItemStyle: {
+            fontSize: '10px'
+        }
+    },
+
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 55,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    }
+};
+
+
+
+function visitor (data,kojaTabela,varijablaZaTip,tipSenzora) {
+
+
+    options.chart.renderTo = kojaTabela;
+    senzorTipIme = data.podaciSenzor[varijablaZaTip].senzorTipIme;
+
+    // data.podaciSenzor[varijablaZaTip].ImeKulture+' - '+data.podaciSenzor[varijablaZaTip].ImeLokSamo+' - '+
+    options.title.text = senzorTipIme;
+
+    // visina MIN I MAX
+    vaMath = Math.ceil;
+    minVar = vaMath(data.podaciSenzor[varijablaZaTip].OdZutoIdeal) - 20;
+        console.log('minVar '+minVar);
+    if (minVar<=0) { min = 0; } else { min = minVar; }
+    maxVar = vaMath(data.podaciSenzor[varijablaZaTip].DoZutoIdeal) + 20;
+        console.log('maxVar '+maxVar);
+    if (maxVar>200) { max = 1000; } else { max = maxVar; }
+
+    min = data.podaciSenzor[varijablaZaTip].minmax[0][0];
+    max = data.podaciSenzor[varijablaZaTip].minmax[0][1];
+
+    options.yAxis.min = min;
+    options.yAxis.max = max;
+    console.log('min '+min+ ' max '+max);
+
+    // zelena
+    options.yAxis.plotBands[0].from = data.podaciSenzor[varijablaZaTip].OdPodaciIdeal;
+    options.yAxis.plotBands[0].to = data.podaciSenzor[varijablaZaTip].DoPodaciIdeal;
+
+    // zuta gore
+    options.yAxis.plotBands[1].from = data.podaciSenzor[varijablaZaTip].DoPodaciIdeal;
+    options.yAxis.plotBands[1].to = data.podaciSenzor[varijablaZaTip].DoZutoIdeal;
+
+    // zuta dole
+    options.yAxis.plotBands[2].from = data.podaciSenzor[varijablaZaTip].OdZutoIdeal;
+    options.yAxis.plotBands[2].to = data.podaciSenzor[varijablaZaTip].OdPodaciIdeal;
+
+    // crvena gore
+    options.yAxis.plotBands[3].from = data.podaciSenzor[varijablaZaTip].DoZutoIdeal;
+    options.yAxis.plotBands[3].to =  parseFloat(max+5);//parseFloat(data.podaciSenzor[varijablaZaTip].DoZutoIdeal) + 100;
+
+    // crvena dole
+    options.yAxis.plotBands[4].from = parseFloat(min-5); //parseFloat(data.podaciSenzor[varijablaZaTip].OdZutoIdeal) - 100;
+    options.yAxis.plotBands[4].to = data.podaciSenzor[varijablaZaTip].OdZutoIdeal;
+
+    options.yAxis.title.text = senzorTipIme;
+    console.log(data.podaciSenzor[varijablaZaTip].podacizaSenzorTime);
+    options.series[0].data = data.podaciSenzor[varijablaZaTip].podacizaSenzorTime; // koristimo [0] samo kada prikazujemo jedan komad
+    //options.series[0].data = [[1501317966000,15],[1501318002000,10],[1501318040000,7]];
+
+    options.series[0].name = data.podaciSenzor[varijablaZaTip].podacizaSenzor[9].OpisSenNot;
+    options.tooltip.valueSuffix = ' '+tipSenzora;
+
+    var chartTemp = new Highcharts.Chart(options);
+
+}
+	
+		document.addEventListener('DOMContentLoaded', function() {
+			
+			var data = Android.getJson();
+			data = JSON.parse(data);
+						
+			visitor(data,'containerA',0,'%'); // vlaznost zemljista
+			visitor(data,'containerB',1,'°C');
+			visitor(data,'containerC',2,'lux');
+			visitor(data,'containerD',3,'%');
+		});
+		</script>
+</head>
+
+<body>
+    <div id="containerA" style="width:100%; height: 300px; margin: 0 auto"></div>
+	<div id="containerB" style="width:100%; height: 300px; margin: 0 auto"></div>
+	<div id="containerC" style="width:100%; height: 300px; margin: 0 auto"></div>
+	<div id="containerD" style="width:100%; height: 300px; margin: 0 auto"></div>
+</body>
+
+</html>
+

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="pref_user_data_settings"
+        android:title="@string/pref_title_user_data">
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:inputType="textCapWords"
+            android:key="@string/KEY_NAME"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_user_data_name_title" />
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:inputType="textCapWords"
+            android:key="@string/KEY_LAST_NAME"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_user_data_last_name_title" />
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:inputType="textCapWords"
+            android:key="@string/KEY_ADDRESS"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_user_data_address_title" />
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:inputType="number"
+            android:key="@string/KEY_ZIP_CODE"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_user_data_zip_title" />
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:inputType="textCapWords"
+            android:key="@string/KEY_CITY"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_user_data_city_title" />
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:inputType="phone"
+            android:key="@string/KEY_PHONE"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_user_data_phone_title" />
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:inputType="phone"
+            android:key="@string/KEY_MOBILE"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_user_data_mobile_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="pref_key_firm_data_settings"
+        android:title="@string/pref_title_firm_data">
+        <SwitchPreference
+            android:defaultValue="off"
+            android:key="pref_firm_data_toggle"
+            android:summary="@string/pref_firm_data_toggle_summ"
+            android:title="@string/pref_firm_data_available_title" />
+
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:dependency="pref_firm_data_toggle"
+            android:inputType="textCapWords"
+            android:key="@string/KEY_FIRM_NAME"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_firm_data_name_title" />
+
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:dependency="pref_firm_data_toggle"
+            android:inputType="textCapWords"
+            android:key="@string/KEY_FIRM_ADDRESS"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_firm_data_address_title" />
+
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:dependency="pref_firm_data_toggle"
+            android:inputType="number"
+            android:key="@string/KEY_FIRM_ID"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_firm_data_ID_title" />
+
+        <EditTextPreference
+            android:defaultValue="@string/pref_edit_text_value_unset"
+            android:dependency="pref_firm_data_toggle"
+            android:inputType="number"
+            android:key="@string/KEY_FIRM_PIB"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_firm_data_PIB_title" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="primary">#00BCD4</color>-->
+    <color name="primary">#001E6E</color>
+    <!--<color name="primary_dark">#0097A7</color>-->
+    <color name="primary_dark">#001E6E</color>
+    <color name="softblue">#99badd</color>
+
+    <!--<color name="accent">#FFC107</color>-->
+    <color name="accent">#0354B0</color>
+    <color name="accent_translucent">#80bebebe</color>
+    <!--<color name="accent_bright">#FFF493</color>-->
+    <color name="accent_bright">#0097A7</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+
+    <color name="button_color">#0354B0</color>
+    <color name="main_title_color">#001E6E</color>
+
+    <color name="sensor_list_row_bg_color">#ffffff</color>
+    <color name="sensor_list_row_sel_color">#FFC107</color>
+    <color name="sensor_list_row_strength_color">#006064</color>
+    <color name="color_brown_1">#947b64</color>
+    <color name="color_brown_2">#b29d88</color>
+
+
+    <color name="snackbar_bg_color">#006064</color>
+    <color name="snackbar_fg_color">#e0f7fa</color>
+
+    <color name="white">#FFF</color>
+
+
+</resources>
