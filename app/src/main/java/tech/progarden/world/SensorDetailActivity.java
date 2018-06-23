@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -26,6 +27,7 @@ import java.util.Map;
 
 import tech.progarden.world.app.AppConfig;
 import tech.progarden.world.app.AppController;
+import tech.progarden.world.app.RequestQueueSingleton;
 import tech.progarden.world.app.SessionManager;
 
 
@@ -225,10 +227,11 @@ public class SensorDetailActivity extends AppCompatActivity {
 
         };
 
-        strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 1, 1.0f));
-
-        // Adding request to  queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        //strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 1, 1.0f));
+        //AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(getApplicationContext()).getRequestQueue();
+        strReq.setTag("SensorDetailActivity");
+        requestQueue.add(strReq);
     }
 
     private void callListView(ArrayList arraylist) {

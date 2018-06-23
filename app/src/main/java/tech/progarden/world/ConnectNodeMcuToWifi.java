@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -23,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import tech.progarden.world.app.AppController;
+import tech.progarden.world.app.RequestQueueSingleton;
 import tech.progarden.world.app.SessionManager;
 import tech.progarden.world.dialogs.ProgressDialogCustom;
 
@@ -142,8 +144,11 @@ public class ConnectNodeMcuToWifi extends AppCompatActivity {
                 }
             });
 
-            strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 1, 1.0f));
-            AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+            //strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 1, 1.0f));
+            //AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(getApplicationContext()).getRequestQueue();
+        strReq.setTag("ConnectNodeMcuToWifi");
+        requestQueue.add(strReq);
 
     }
 
@@ -247,10 +252,12 @@ public class ConnectNodeMcuToWifi extends AppCompatActivity {
         });
 
 
-        strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 1, 1.0f));
+        //strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 1, 1.0f));
+        //AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
 
-        // Adding request to  queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(getApplicationContext()).getRequestQueue();
+        strReq.setTag("ConnectNodeMcuToWifiDva");
+        requestQueue.add(strReq);
 
 
     }

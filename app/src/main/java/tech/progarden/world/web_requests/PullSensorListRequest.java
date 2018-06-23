@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -22,6 +23,7 @@ import tech.progarden.world.app.AppConfig;
 import tech.progarden.world.app.AppController;
 import tech.progarden.world.callback_interfaces.WebRequestCallbackInterface;
 import tech.progarden.world.dialogs.ProgressDialogCustom;
+import tech.progarden.world.app.RequestQueueSingleton;
 
 /**
  * Created by 1 on 1/29/2016.
@@ -114,8 +116,12 @@ public class PullSensorListRequest {
             }
         };
 
-        strReq.setRetryPolicy(new DefaultRetryPolicy(AppConfig.DEFAULT_TIMEOUT_MS, AppConfig.DEFAULT_MAX_RETRIES, AppConfig.DEFAULT_BACKOFF_MULT));
-        // Adding request to  queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        //strReq.setRetryPolicy(new DefaultRetryPolicy(AppConfig.DEFAULT_TIMEOUT_MS, AppConfig.DEFAULT_MAX_RETRIES, AppConfig.DEFAULT_BACKOFF_MULT));
+        //AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(context.getApplicationContext()).getRequestQueue();
+        strReq.setTag("PullSensorListRequest");
+        requestQueue.add(strReq);
+
     }
 }

@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -20,6 +21,7 @@ import java.util.Map;
 import tech.progarden.world.R;
 import tech.progarden.world.app.AppConfig;
 import tech.progarden.world.app.AppController;
+import tech.progarden.world.app.RequestQueueSingleton;
 import tech.progarden.world.callback_interfaces.WebRequestCallbackInterface;
 
 /**
@@ -112,8 +114,10 @@ public class PullSensorPlantsRequest {
             }
         };
 
-        strReq.setRetryPolicy(new DefaultRetryPolicy(AppConfig.DEFAULT_TIMEOUT_MS, AppConfig.DEFAULT_MAX_RETRIES, AppConfig.DEFAULT_BACKOFF_MULT));
-        // Adding request to  queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        //strReq.setRetryPolicy(new DefaultRetryPolicy(AppConfig.DEFAULT_TIMEOUT_MS, AppConfig.DEFAULT_MAX_RETRIES, AppConfig.DEFAULT_BACKOFF_MULT));
+        // AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(_context.getApplicationContext()).getRequestQueue();
+        strReq.setTag("PullSensorPlantsRequest");
+        requestQueue.add(strReq);
     }
 }

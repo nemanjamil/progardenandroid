@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +13,10 @@ import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONException;
@@ -24,6 +27,7 @@ import java.util.Map;
 
 import tech.progarden.world.app.AppConfig;
 import tech.progarden.world.app.AppController;
+import tech.progarden.world.app.RequestQueueSingleton;
 import tech.progarden.world.app.SessionManager;
 import tech.progarden.world.dialogs.ProgressDialogCustom;
 
@@ -38,6 +42,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private ProgressDialogCustom progressDialog;
     private SessionManager session;
+
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +77,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(intent);
             finish();
         }
+
+        requestQueue = RequestQueueSingleton.getInstance(this.getApplicationContext())
+                .getRequestQueue();
+
     }
 
     /**
@@ -94,6 +104,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try {
 
                     JSONObject jObj = new JSONObject(response);
+                    Log.d("Response 1 " ,jObj.toString());
 
 
                     //String userId= jObj.getString("uid");
@@ -144,10 +155,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             session.setFirmAddress(jObj_user_data.getString("KomitentFirmaAdresa"));
 
                         // Launching  main activity
-                        /*Intent intent = new Intent(LoginActivity.this,
+                        Intent intent = new Intent(LoginActivity.this,
                                 DrawerActivity.class);
                         startActivity(intent);
-                        finish();*/
+                        finish();
                     } else {
                         // login error
                         String errorMsg = jObj.getString("error_msg");
@@ -186,10 +197,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         };
 
-        strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 1, 1.0f));
-
+        //strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 1, 1.0f));
         // Adding request to  queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        //AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+        strReq.setTag("LoginActivity");
+        requestQueue.add(strReq);
     }
 
     @Override
@@ -211,6 +224,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
                     // login user
                     checkLogin(email, password);
+                    //checkLoginPost(email, password);
                 } else {
                     // show snackbar to enter credentials
                     Snackbar.make(v, "Unesite podatke!", Snackbar.LENGTH_LONG)
@@ -219,4 +233,51 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+    private void checkLoginPost(final String email, final String password) {
+
+
+
+        StringRequest jsonObjectRequest = new StringRequest(Request.Method.POST, AppConfig.URL_LOGIN_POST,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jObj = new JSONObject(response);
+                            boolean success = jObj.getBoolean("success");
+                            Log.d("Response " ,jObj.toString());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("action", "povuciPodatkeAndroidKorisnik");
+                params.put("tag", "login");
+                params.put("email", email);
+                params.put("p", password);
+                return params;
+            }
+        };
+        jsonObjectRequest.setTag("miki");
+        requestQueue.add(jsonObjectRequest);
+
+
+    }
+
+
 }

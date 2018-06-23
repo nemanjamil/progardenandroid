@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -29,6 +30,7 @@ import java.util.Map;
 
 import tech.progarden.world.app.AppConfig;
 import tech.progarden.world.app.AppController;
+import tech.progarden.world.app.RequestQueueSingleton;
 import tech.progarden.world.app.SessionManager;
 import tech.progarden.world.dialogs.ProgressDialogCustom;
 
@@ -203,10 +205,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         };
 
-        strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-        AppConfig.logInfo("REGISTER_URL", strReq.getUrl());
+        //strReq.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        //AppConfig.logInfo("REGISTER_URL", strReq.getUrl());
+
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(getApplicationContext()).getRequestQueue();
+        strReq.setTag("RegisterActivity");
+        requestQueue.add(strReq);
 
     }
 
