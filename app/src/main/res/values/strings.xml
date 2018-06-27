@@ -175,6 +175,7 @@
     <string name="title_maintanance">Manual Control</string>
     <string name="list_of_networks">Network List</string>
     <string name="title_nodemcu_conn">NodeMcu Sending Data</string>
+    <string name="title_steptwo">Step 2</string>
     <string name="title_networks">Network List</string>
     <string name="pleaseWait">Please Wait</string>
     <string name="tvKategName">NameExample</string>
@@ -192,5 +193,6 @@
     <string name="buttonpumpsubmit">Submit Pump Changes</string>
     <string name="check_status_of_connection">Check Status of connection</string>
     <string name="state_of_pump">State of Pump</string>
+    <string name="nastavinakorak3">Go to Step 3</string>
 
 </resources>

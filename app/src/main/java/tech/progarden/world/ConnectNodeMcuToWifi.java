@@ -208,19 +208,12 @@ public class ConnectNodeMcuToWifi extends AppCompatActivity {
                 url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-                //pDialog.hideDialog();
-                //Toast.makeText(getApplicationContext(), "Data is sent to NodeMcu", Toast.LENGTH_LONG).show();
-
                 try {
-
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
-
                         String uidres = jsonObject.getString("userid");
                         pDialog.showDialog("Now, validate status and click on button");
-
                     } else {
                         pDialog.showDialog("Data is not correct. Please try again");
                         return;
@@ -230,9 +223,6 @@ public class ConnectNodeMcuToWifi extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -258,7 +248,6 @@ public class ConnectNodeMcuToWifi extends AppCompatActivity {
         RequestQueue requestQueue = RequestQueueSingleton.getInstance(getApplicationContext()).getRequestQueue();
         strReq.setTag("ConnectNodeMcuToWifiDva");
         requestQueue.add(strReq);
-
 
     }
 

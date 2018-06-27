@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Step2Connection">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="?actionBarSize"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/buttonCheckStatus2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/check_status_of_connection" />
+
+        <TextView
+            android:id="@+id/ipstatus2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ipstatus2"
+            android:textSize="20dp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/ssidstatus2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ssidstatus2"
+            android:textSize="25dp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/button2garden"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:text="@string/nastavinakorak3" />
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarmain"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/color_brown_1"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+</android.support.constraint.ConstraintLayout>
