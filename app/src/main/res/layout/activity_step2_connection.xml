@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ipstatus2"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:visibility="invisible" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ssidstatus2"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:visibility="invisible" />
 
         <Button
@@ -41,6 +41,13 @@
             android:layout_height="wrap_content"
             android:visibility="invisible"
             android:text="@string/nastavinakorak3" />
+
+        <Button
+            android:id="@+id/button4garden"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nastavinakorak4" />
 
 
     </LinearLayout>

@@ -26,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import tech.progarden.world.app.AppConfig;
 import tech.progarden.world.app.RequestQueueSingleton;
 import tech.progarden.world.app.SessionManager;
 import tech.progarden.world.dialogs.ProgressDialogCustom;
@@ -33,7 +34,7 @@ import tech.progarden.world.wifi.AddUsertoServer;
 
 public class Step2Connection extends AppCompatActivity {
 
-    Button button2, button2garden;
+    Button button2, button2garden, button4garden;
     TextView ipstatus2, ssidstatus2;
     SessionManager session;
     ProgressDialogCustom pDialog;
@@ -55,6 +56,7 @@ public class Step2Connection extends AppCompatActivity {
 
         button2 = (Button) findViewById(R.id.buttonCheckStatus2);
         button2garden = (Button) findViewById(R.id.button2garden);
+        button4garden = (Button) findViewById(R.id.button4garden);
         ipstatus2 = (TextView) findViewById(R.id.ipstatus2);
         ssidstatus2 = (TextView) findViewById(R.id.ssidstatus2);
 
@@ -73,17 +75,23 @@ public class Step2Connection extends AppCompatActivity {
                 gotostep3();
             }
         });
+        button4garden.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                step4(ssid_current, bssid_current);
+            }
+        });
 
         setUpToolBar();
         auts = new AddUsertoServer(Step2Connection.this);
-        //pDialog = new ProgressDialogCustom(Step2Connection.this);
-        //pDialog.showDialog("Waiting for connection to Sensor");
+
+
     }
 
     private void gotostep3() {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
 
-        ssid_current = wifiInfo.getSSID();
+        ssid_current = wifiInfo.getSSID().replace("\"", "").toUpperCase();
         bssid_current = wifiInfo.getBSSID().replace(":", "").toUpperCase();
         id_current_wifi = wifiManager.getConnectionInfo().getNetworkId();
 
@@ -103,8 +111,8 @@ public class Step2Connection extends AppCompatActivity {
                         //Wait to connect
                         Thread.sleep(1000);
                     }
-                    Log.d("testmiki ima net ", "OK");
-                    step4(ssid_current,bssid_current);
+
+                    Toast.makeText(getApplicationContext(), "OK, go to Step 4", Toast.LENGTH_LONG).show();
 
                 } catch (Exception e) {
                 }
@@ -112,68 +120,41 @@ public class Step2Connection extends AppCompatActivity {
         };
         t.start();
 
+        button4garden.setVisibility(View.VISIBLE);
 
     }
 
     private void step4(final String ssid_current, final String bssid_current) {
 
-        pDialog.showDialog("Sent Garden-User to Server to verify ownership");
-
         auts.addSensor(new VolleyCallback() {
             @Override
             public void onSuccess(String resultmoj) {
-                //checkIfLocalConnected(ssid_current, bssid_current, userId);
+                Log.d("testmiki Success od ",resultmoj);
+                Intent i = new Intent(Step2Connection.this, DrawerActivity.class);
+                startActivity(i);
             }
 
             @Override
             public void onError(VolleyCallback error) {
                 Log.d("testmiki VolleyCall", String.valueOf(error));
+                pDialog.showDialog(String.valueOf(error));
             }
 
             @Override
             public void onError(String error) {
                 Log.d("testmiki E String ", String.valueOf(error));
+                pDialog.showDialog(String.valueOf(error));
             }
 
-        }, userId, bssid_current, "1");
+        }, userId, bssid_current, ssid_current, "1");
 
     }
 
-    public void checkIfLocalConnected(final String SSID, final String networkPass, final String ssid_current) {
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while (!checkIfIsConnected(SSID)) {
-                        Log.d("testmiki chc TF  ", String.valueOf(checkIfIsConnected(SSID)));
-                        Thread.sleep(2000);
-                    }
-
-                    //Log.d("testmiki chc 2 ", String.valueOf(checkIfIsConnected(SSID)));
-                    //sentInfoToNodeMcu(ssid_current, networkPass, userId);
-
-                    Intent intent = new Intent(getApplicationContext(), ConnectNodeMcuToWifi.class);
-                    intent.putExtra("ssid", SSID);
-                    intent.putExtra("networkPass", networkPass);
-                    intent.putExtra("ssid_current", ssid_current.replace("\"", ""));
-                    startActivity(intent);
-                    //pDialog.hideDialog();
-
-
-                } catch (Exception e) {
-                }
-            }
-        };
-
-        t.start();
-
-
-    }
 
     public interface VolleyCallback {
         void onSuccess(String result);
 
-        void onError(SearchNetworks.VolleyCallback error);
+        void onError(Step2Connection.VolleyCallback error);
 
         void onError(String error);
     }
@@ -222,7 +203,7 @@ public class Step2Connection extends AppCompatActivity {
                         String ipstatusstring = jsonObject.getString("ip");
                         String ssidstatusstring = jsonObject.getString("ssid");
 
-                        ipstatus2.setText("IP ADRESS : " + ipstatusstring);
+                        ipstatus2.setText("IP address : " + ipstatusstring);
                         ipstatus2.setVisibility(View.VISIBLE);
 
                         ssidstatus2.setText("Garden is connected to : " + ssidstatusstring);

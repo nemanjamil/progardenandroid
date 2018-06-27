@@ -191,8 +191,9 @@
     <string name="onpumpmin">ON pump (minutes)</string>
     <string name="offpumpminutes">OFF pump (minutes)</string>
     <string name="buttonpumpsubmit">Submit Pump Changes</string>
-    <string name="check_status_of_connection">Check Status of connection</string>
+    <string name="check_status_of_connection">Step 2 - Check Status of connection</string>
     <string name="state_of_pump">State of Pump</string>
-    <string name="nastavinakorak3">Go to Step 3</string>
+    <string name="nastavinakorak3">Step 3 - Disconnect from Garden-Wifi and Connect to Home-Wifi</string>
+    <string name="nastavinakorak4">Step 4 - Sent Data to Server</string>
 
 </resources>

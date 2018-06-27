@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -120,6 +121,7 @@ public class SensorDetailActivity extends AppCompatActivity {
                 try {
 
                     jsonObject = new JSONObject(response);
+                    Log.d("testmiki response", String.valueOf(response));
                     boolean success = jsonObject.getBoolean("success");
 
                     if (success) {
@@ -235,14 +237,13 @@ public class SensorDetailActivity extends AppCompatActivity {
     }
 
     private void callListView(ArrayList arraylist) {
-        //Log.d("testmiki", String.valueOf(arraylist));
 
         if (arraylist.size() > 0) {
             adapter = new ViewAdapterSensorDetail(SensorDetailActivity.this, arraylist);
             listView.setAdapter(adapter);
 
         } else {
-            Toast.makeText(getApplicationContext(), "No date from sensor.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No data from sensor.", Toast.LENGTH_SHORT).show();
         }
 
 

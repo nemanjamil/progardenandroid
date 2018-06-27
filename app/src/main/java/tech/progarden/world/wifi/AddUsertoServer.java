@@ -33,7 +33,7 @@ public class AddUsertoServer {
     /**
      * function to pull sensor list form web server
      */
-    public void addSensor(final Step2Connection.VolleyCallback volleyCallback, final String uid, final String mac, final String kind) {
+    public void addSensor(final Step2Connection.VolleyCallback volleyCallback, final String userId, final String bssid_current, final String ssid_current, final String kind) {
         // Tag used to cancel the request
         String tag_string_req = "req_add_sensor";
         final boolean vratiodg = false;
@@ -41,10 +41,8 @@ public class AddUsertoServer {
 
         //progressDialog.showDialog(context.getString(R.string.progress_add_sensor_list));
 
-        String url = String.format(AppConfig.URL_ADD_SENSOR_GET, uid, mac, kind);
-
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_ADD_SENSOR_POST, new Response.Listener<String>() {
+                AppConfig.URL_ADD_SENSOR_POST_GARDEN, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -71,7 +69,7 @@ public class AddUsertoServer {
                     } else {
                         String errorMsg = jObj.getString("error_msg");
                         Log.d("testmiki err", errorMsg);
-                        volleyCallback.onError("fail");
+                        volleyCallback.onError(errorMsg);
 
                     }
                 } catch (JSONException e) {
@@ -91,12 +89,12 @@ public class AddUsertoServer {
 
             @Override
             protected Map<String, String> getParams() {
-                // Post params
                 Map<String, String> params = new HashMap<String, String>();
-                //params.put("action", "dodajSenzorId");
-                params.put("id", uid);
-                params.put("string", mac);
-                //params.put("br", kind);
+                params.put("action", "dodajSenzorId");
+                params.put("id", userId);
+                params.put("ssid_current", ssid_current);
+                params.put("bssid_current", bssid_current);
+                params.put("br", kind);
                 return params;
             }
 

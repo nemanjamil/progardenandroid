@@ -17,6 +17,8 @@ public class AppConfig {
     public static final String URL_GETINFOPARAMETER_POST = URL_BASE + "parametrigarden.php?action=getsensordetailactivity";
     public static final String URL_CHANGEPUMPSTATUS_POST = URL_BASE + "parametrigarden.php?action=changepumpstatus";
     public static final String URL_GETPUMPSTATUS_POST = URL_BASE + "parametrigarden.php?action=getpumpstatus";
+    public static final String URL_ADD_SENSOR_POST_GARDEN = URL_BASE + "parametrigarden.php?action=dodajsenzorid";
+    public static final String URL_PING = URL_BASE + "parametri.php?action=ping";
 
     //"action=povuciPodatkeAndroidKorisnik&email=pera@gjsd.com&p=miki";
     public static final String URL_LOGIN_POST = URL_BASE + "parametri.php?action=povuciPodatkeAndroidKorisnik";
@@ -35,7 +37,7 @@ public class AppConfig {
     public static final String URL_DEL_SENSOR_POST = URL_BASE + "parametri.php?action=obrisiSenzorId";
     public static final String URL_DEL_SENSOR_GET = URL_DEL_SENSOR_POST + "&id=%1$s&br=%2$s";
     //http://direktnoizbaste.rs/parametri.php?action=dodajSenzorId&string=pera&id=1&br=4
-    public static final String URL_ADD_SENSOR_POST = URL_BASE + "parametri.php?action=dodajSenzorId";
+    public static final String URL_ADD_SENSOR_POST = URL_BASE + "parametrigarden.php?action=dodajSenzorId";
     public static final String URL_ADD_SENSOR_GET = URL_ADD_SENSOR_POST + "&id=%1$s&string=%2$s&br=%3$s";
     //{"kulture":[{"IdKulture":1,"ImeKulture":"Boranija","SlikaKulture":null},{"IdKulture":2,"ImeKulture":"Paprika","SlikaKulture":null},{"IdKulture":3,"ImeKulture":"Paradajz","SlikaKulture":null}]}
     public static final String URL_SENSOR_PLANTS_POST = URL_BASE + "parametri.php?action=podaciKulture";

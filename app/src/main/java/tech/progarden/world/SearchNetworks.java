@@ -50,7 +50,6 @@ import java.util.List;
 import tech.progarden.world.app.RequestQueueSingleton;
 import tech.progarden.world.app.SessionManager;
 import tech.progarden.world.dialogs.ProgressDialogCustom;
-import tech.progarden.world.wifi.AddUsertoServer;
 import tech.progarden.world.wifi.CustomNetworkAdapter;
 
 public class SearchNetworks extends AppCompatActivity {
@@ -207,13 +206,6 @@ public class SearchNetworks extends AppCompatActivity {
                         //connectToWifi(dataModel.SSID, dataModel.BSSID, session.getUID(), ssid_current);
                     }
 
-                    /*if (!ssid_current.replace("\"", "").equals(dataModel.SSID)) {
-                    } else {
-                        *//*wifiManager.disconnect();
-                        Intent intent = new Intent(getApplicationContext(), DrawerActivity.class);
-                        startActivity(intent);*//*
-                    }*/
-
                 }
             });
 
@@ -355,115 +347,16 @@ public class SearchNetworks extends AppCompatActivity {
         wifiManager.updateNetwork(wifiConfig);
         wifiManager.saveConfiguration();
         wifiManager.enableNetwork(netId, true);
-        //wifiManager.reconnect();
-        //wifiManager.disconnect();
 
-        //discon = new DisconnectWifi();
-        //registerReceiver(discon, new IntentFilter(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION));
-
-        /*WifiInfo info = wifiManager.getConnectionInfo(); //get WifiInfo
-        int id = info.getNetworkId(); //get id of currently connected network
-        wifiManager.disconnect();
-        wifiManager.removeNetwork(id);
-        wifiManager.disableNetwork(id);*/
-        //wifiManager.saveConfiguration();
-
-
-        /*boolean disconnect = wifiManager.disconnect();
-        Log.d("testmiki cur", String.valueOf(id)+" "+info.getSSID()+" "+disconnect);
-        wifiManager.disableNetwork(id); //disable current network
-        wifiManager.saveConfiguration();
-*/
-
-        // remember id
-       /* int netId = wifiManager.addNetwork(wifiConfig);
-        wifiManager.disconnect();
-        wifiManager.enableNetwork(netId, true);
-        wifiManager.reconnect();
-
-        WifiConfiguration conf = new WifiConfiguration();
-        conf.SSID = "\"\"" + SSID + "\"\"";
-        conf.preSharedKey = "\"" + networkPass + "\"";
-        wifiManager.addNetwork(conf);*/
-
-
-
-        //wifiManager.disconnect();
-        // remember id
-       /* int netId = wifiManager.addNetwork(wifiConfig);
-        wifiManager.updateNetwork(wifiConfig);
-        wifiManager.saveConfiguration();
-        //mainWifiObj.disconnect();
-        wifiManager.enableNetwork(netId, true);*/
-
-        //mainWifiObj.reconnect();
-
-       /* WifiConfiguration conf = new WifiConfiguration();
-        conf.SSID = "\"\"" + SSID + "\"\"";
-        conf.preSharedKey = "\"" + "password011" + "\"";
-        mainWifiObj.addNetwork(conf);*/
 
         pDialog.showDialog("Connecting to NodeMcu");
 
-        /*auts.addSensor(new VolleyCallback() {
-            @Override
-            public void onSuccess(String resultmoj) {
-                checkIfLocalConnected(SSID, networkPass, ssid_current);
-            }
-
-            @Override
-            public void onError(VolleyCallback error) {
-                Log.d("testmiki VolleyCall", String.valueOf(error));
-            }
-
-            @Override
-            public void onError(String error) {
-                Log.d("testmiki E String ", String.valueOf(error));
-            }
-
-        }, userId, BSSID.replace(":", "").toUpperCase(), "1");*/
-
-    }
-
-
-    public void checkIfLocalConnected(final String SSID, final String networkPass, final String ssid_current) {
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while (!checkIfIsConnected(SSID)) {
-                        Log.d("testmiki chc TF  ", String.valueOf(checkIfIsConnected(SSID)));
-                        Thread.sleep(2000);
-                    }
-
-                    //Log.d("testmiki chc 2 ", String.valueOf(checkIfIsConnected(SSID)));
-                    //sentInfoToNodeMcu(ssid_current, networkPass, userId);
-
-                    Intent intent = new Intent(getApplicationContext(), ConnectNodeMcuToWifi.class);
-                    intent.putExtra("ssid", SSID);
-                    intent.putExtra("networkPass", networkPass);
-                    intent.putExtra("ssid_current", ssid_current.replace("\"", ""));
-                    startActivity(intent);
-                    //pDialog.hideDialog();
-
-
-                } catch (Exception e) {
-                }
-            }
-        };
-
-        t.start();
 
 
     }
 
-    public interface VolleyCallback {
-        void onSuccess(String result);
 
-        void onError(VolleyCallback error);
 
-        void onError(String error);
-    }
 
 
     private boolean checkIfIsConnected(String SSID) {
