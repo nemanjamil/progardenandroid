@@ -42,6 +42,7 @@ public class SensorDetailActivity extends AppCompatActivity {
     JSONArray jsonArray;
     JSONArray jsonArrayIn;
     ArrayList arraylist;
+    ArrayList<ListaVarijabli>  listaVarijabli;
 
 //    Button buttonGraph;
 
@@ -60,7 +61,7 @@ public class SensorDetailActivity extends AppCompatActivity {
 
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
-
+        listaVarijabli = new ArrayList<ListaVarijabli>();
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
@@ -143,7 +144,7 @@ public class SensorDetailActivity extends AppCompatActivity {
                             Integer OdZutoIdeal = c.getInt("OdZutoIdeal");
                             Integer DoZutoIdeal = c.getInt("DoZutoIdeal");
 
-                            HashMap<String, String> grupaPodataka = new HashMap<>();
+                           /* HashMap<String, String> grupaPodataka = new HashMap<>();
                             grupaPodataka.put("ImeKulture", ImeKulture);
                             grupaPodataka.put("IdListaSenzora", String.valueOf(IdListaSenzora));
                             grupaPodataka.put("IdSenzorTip", String.valueOf(IdSenzorTip));
@@ -151,7 +152,20 @@ public class SensorDetailActivity extends AppCompatActivity {
                             grupaPodataka.put("OdPodaciIdeal", String.valueOf(OdPodaciIdeal));
                             grupaPodataka.put("DoPodaciIdeal", String.valueOf(DoPodaciIdeal));
                             grupaPodataka.put("OdZutoIdeal", String.valueOf(OdZutoIdeal));
-                            grupaPodataka.put("DoZutoIdeal", String.valueOf(DoZutoIdeal));
+                            grupaPodataka.put("DoZutoIdeal", String.valueOf(DoZutoIdeal));*/
+
+
+                            ListaVarijabli lv = new ListaVarijabli();
+                            lv.setImeKulture(ImeKulture);
+                            lv.setIdListaSenzora(IdListaSenzora);
+                            lv.setIdSenzorTip(IdSenzorTip);
+                            lv.setSenzorTipIme(senzorTipIme);
+                            lv.setOdPodaciIdeal(OdPodaciIdeal);
+                            lv.setDoPodaciIdeal(DoPodaciIdeal);
+                            lv.setOdZutoIdeal(OdZutoIdeal);
+                            lv.setDoZutoIdeal(DoZutoIdeal);
+
+
 
                             jsonArrayIn = c.getJSONArray("podacizaSenzor");
                             for (int y = 0; y < jsonArrayIn.length(); y++) {
@@ -173,17 +187,23 @@ public class SensorDetailActivity extends AppCompatActivity {
                                 float vrednostSenzor = Float.valueOf(m.getString("vrednostSenzor"));
                                 String OpisNotifikacije = m.getString("OpisNotifikacije");
 
-                                grupaPodataka.put("vremeSenzor",vremeSenzor);
+                                /*grupaPodataka.put("vremeSenzor",vremeSenzor);
                                 grupaPodataka.put("idSenzorIncr", String.valueOf(idSenzorIncr));
                                 grupaPodataka.put("vrednostSenzor", String.valueOf(vrednostSenzor));
                                 grupaPodataka.put("OpisNotifikacije", OpisNotifikacije);
-                                grupaPodataka.put("IdSenNotNotifikacija", String.valueOf(IdSenNotNotifikacija));
+                                grupaPodataka.put("IdSenNotNotifikacija", String.valueOf(IdSenNotNotifikacija));*/
+
+                                lv.setVremeSenzor(vremeSenzor);
+                                lv.setIdSenzorIncr(idSenzorIncr);
+                                lv.setVrednostSenzor(vrednostSenzor);
+                                lv.setOpisNotifikacije(OpisNotifikacije);
+                                lv.setIdSenNotNotifikacija(IdSenNotNotifikacija);
 
 
 
                             }
 
-                            arraylist.add(grupaPodataka);
+                            arraylist.add(lv);
 
 
 
@@ -238,9 +258,18 @@ public class SensorDetailActivity extends AppCompatActivity {
 
     private void callListView(ArrayList arraylist) {
 
+        ListaVarijabli llv =  (ListaVarijabli) arraylist.get(0);
         if (arraylist.size() > 0) {
-            adapter = new ViewAdapterSensorDetail(SensorDetailActivity.this, arraylist);
-            listView.setAdapter(adapter);
+
+            if (llv.getVrednostSenzor() > 0) {
+                adapter = new ViewAdapterSensorDetail(SensorDetailActivity.this, arraylist);
+                listView.setAdapter(adapter);
+            } else {
+                Toast.makeText(getApplicationContext(), "Wating Sensor to sent data to server. There is no data from sensor", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),DrawerActivity.class);
+                startActivity(intent);
+            }
+
 
         } else {
             Toast.makeText(getApplicationContext(), "No data from sensor.", Toast.LENGTH_SHORT).show();
