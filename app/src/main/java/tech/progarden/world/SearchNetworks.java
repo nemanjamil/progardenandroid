@@ -202,7 +202,8 @@ public class SearchNetworks extends AppCompatActivity {
                         connectToWifiGarden(dataModel.SSID, dataModel.BSSID, session.getUID(), ssid_current);
                     } else {
                         pDialog.hideDialog();
-                        pDialog.showDialog("Please Connect to Garden-Wifi on you mobile phone");
+                        pDialog.showDialog("Step 1 : Please Connect to Garden-Wifi on you mobile phone");
+                        //Log.d("testmiki ", "Please Connect to Garden-Wifi on you mobile phone");
                         //connectToWifi(dataModel.SSID, dataModel.BSSID, session.getUID(), ssid_current);
                     }
 

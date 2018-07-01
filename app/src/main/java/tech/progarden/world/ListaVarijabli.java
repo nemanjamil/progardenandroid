@@ -1,11 +1,10 @@
 package tech.progarden.world;
 
 
-
 class ListaVarijabli {
 
-    String ImeKulture,senzorTipIme,vremeSenzor,OpisNotifikacije;
-    int IdListaSenzora,IdSenzorTip,OdPodaciIdeal,DoPodaciIdeal,OdZutoIdeal,DoZutoIdeal,idSenzorIncr;
+    String ImeKulture, senzorTipIme, vremeSenzor, OpisNotifikacije;
+    int IdListaSenzora, IdSenzorTip, OdPodaciIdeal, DoPodaciIdeal, OdZutoIdeal, DoZutoIdeal, idSenzorIncr;
     int IdSenNotNotifikacija;
     float vrednostSenzor;
 
@@ -50,7 +49,8 @@ class ListaVarijabli {
         this.vremeSenzor = vremeSenzor;
     }
 
-    public ListaVarijabli() {}
+    public ListaVarijabli() {
+    }
 
     public String getImeKulture() {
         return ImeKulture;

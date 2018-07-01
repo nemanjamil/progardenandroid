@@ -5,9 +5,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -17,59 +19,44 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
-class ViewAdapterSensorDetail extends BaseAdapter {
+// https://medium.com/mindorks/custom-array-adapters-made-easy-b6c4930560dd
+class ViewAdapterSensorDetail extends ArrayAdapter<ListaVarijabli> {
 
 
     TextView opisnotifikacije_tv, dopodaciideal_tv, odpodaciideal_tv, vrednostsenzor_tv, senzortipime_tv, imekulture_tv, vremesenzor_tv;
 
-    private Activity activity;
+    Context context;
     private LayoutInflater inflater;
-    ArrayList<HashMap<String, String>> data;
-    HashMap<String, String> resultp = new HashMap<>();
-
-    public ViewAdapterSensorDetail(Activity activity, ArrayList<HashMap<String, String>> arraylist) {
-        this.activity = activity;
-        data = arraylist;
-    }
+    ArrayList<ListaVarijabli> data;
 
 
-    @Override
-    public int getCount() {
-        return data.size();
-    }
 
-    @Override
-    public Object getItem(int i) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return 0;
+    public ViewAdapterSensorDetail(Context context, ArrayList listaVarijablis) {
+        super(context, 0 , listaVarijablis);
+        data = listaVarijablis;
+        this.context = context;
     }
 
     @Override
     public View getView(final int position, View view, ViewGroup viewGroup) {
 
 
-        if (inflater == null)
-            inflater = (LayoutInflater) activity
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (view == null)
-            view = inflater.inflate(R.layout.onerowacitvity_sensor, null);
+        View listItem = view;
+        listItem = LayoutInflater.from(context).inflate(R.layout.onerowacitvity_sensor,viewGroup,false);
 
-        resultp = data.get(position);
+        ListaVarijabli jedanKomad = data.get(position);
 
 
         // GET INFORMATIONS
-        String opisnotifikacije_str = resultp.get("OpisNotifikacije");
-        String odpodaciideal_str = resultp.get("OdPodaciIdeal");
-        String dopodaciideal_str = resultp.get("DoPodaciIdeal");
-        String vrednostsenzor_str = resultp.get("vrednostSenzor");
-        String senzortipime_str = resultp.get("senzorTipIme");
+        String opisnotifikacije_str = jedanKomad.getOpisNotifikacije();
+        int odpodaciideal_str = jedanKomad.getOdPodaciIdeal();
+        int dopodaciideal_str = jedanKomad.getDoPodaciIdeal();
+        float vrednostsenzor_str = jedanKomad.getVrednostSenzor();
+        Log.d("testmiki", String.valueOf(vrednostsenzor_str));
+        String senzortipime_str = jedanKomad.getSenzorTipIme();
         //String imekulture_str = resultp.get("ImeKulture");
-        String vremesenzor_str = resultp.get("vremeSenzor");
-        int IdSenNotNotifikacija = Integer.parseInt(resultp.get("IdSenNotNotifikacija"));
+        String vremesenzor_str = jedanKomad.getVremeSenzor();
+        int IdSenNotNotifikacija = jedanKomad.getIdSenNotNotifikacija();
 
 
         String colortype;
@@ -99,34 +86,34 @@ class ViewAdapterSensorDetail extends BaseAdapter {
         //String color = Integer.parseInt(String.valueOf(R.color.my_color));
 
 
-        odpodaciideal_tv = (TextView) view.findViewById(R.id.odpodaciideal_tv);
-        dopodaciideal_tv = (TextView) view.findViewById(R.id.dopodaciideal_tv);
+        odpodaciideal_tv = (TextView) listItem.findViewById(R.id.odpodaciideal_tv);
+        dopodaciideal_tv = (TextView) listItem.findViewById(R.id.dopodaciideal_tv);
 
-        vrednostsenzor_tv = (TextView) view.findViewById(R.id.vrednostsenzor_tv);
+        vrednostsenzor_tv = (TextView) listItem.findViewById(R.id.vrednostsenzor_tv);
         vrednostsenzor_tv.setTypeface(null, Typeface.BOLD);
         vrednostsenzor_tv.setTextColor(Color.parseColor(colortype));
         vrednostsenzor_tv.setTextSize(40);
 
-        senzortipime_tv = (TextView) view.findViewById(R.id.senzortipime_tv);
+        senzortipime_tv = (TextView) listItem.findViewById(R.id.senzortipime_tv);
         senzortipime_tv.setTypeface(null, Typeface.BOLD);
         senzortipime_tv.setTextSize(20);
 
-        //imekulture_tv = (TextView) view.findViewById(R.id.imekulture_tv);
-        vremesenzor_tv = (TextView) view.findViewById(R.id.vremesenzor_tv);
+        //imekulture_tv = (TextView) listItem.findViewById(R.id.imekulture_tv);
+        vremesenzor_tv = (TextView) listItem.findViewById(R.id.vremesenzor_tv);
 
 
-        TextView tekstodpodaciideal_tv = (TextView) view.findViewById(R.id.tekstodpodaciideal_tv);
+        TextView tekstodpodaciideal_tv = (TextView) listItem.findViewById(R.id.tekstodpodaciideal_tv);
         tekstodpodaciideal_tv.setTextSize(10);
-        tekstodpodaciideal_tv.setText(activity.getResources().getString(R.string.idealnavrenost)+" "+senzortipime_str);
+        tekstodpodaciideal_tv.setText(context.getResources().getString(R.string.idealnavrenost)+" "+senzortipime_str);
 
         // upucavamo varijable u polja
         //opisnotifikacije_tv.setText(opisnotifikacije_str);
-        odpodaciideal_tv.setText(odpodaciideal_str);
+        odpodaciideal_tv.setText(String.valueOf(odpodaciideal_str));
         odpodaciideal_tv.setTextSize(10);
-        dopodaciideal_tv.setText(dopodaciideal_str);
+        dopodaciideal_tv.setText(String.valueOf(dopodaciideal_str));
         dopodaciideal_tv.setTextSize(10);
 
-        vrednostsenzor_tv.setText(vrednostsenzor_str);
+        vrednostsenzor_tv.setText(String.valueOf(vrednostsenzor_str));
         senzortipime_tv.setText(senzortipime_str);
         //imekulture_tv.setText(imekulture_str);
 
@@ -151,13 +138,13 @@ class ViewAdapterSensorDetail extends BaseAdapter {
         vremesenzor_tv.setText("Date Time : "+newFormat);
         vremesenzor_tv.setTextSize(8);
 
-        view.setOnClickListener(new View.OnClickListener() {
+        listItem.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
-                resultp = data.get(position);
-                int IdSenzorTip_str = Integer.parseInt(resultp.get("IdSenzorTip"));
+                ListaVarijabli naklik = data.get(position);
+                int IdSenzorTip_str = naklik.getIdSenzorTip();
 
                 //Toast.makeText(activity.getApplicationContext(), "Broj : "+IdSenzorTip_str, Toast.LENGTH_SHORT).show();
                 // MACADRESA
@@ -165,19 +152,19 @@ class ViewAdapterSensorDetail extends BaseAdapter {
                 // kulturaId
                 // tipsenzora
 
-               /* Intent intent = null;
-                //intent = new Intent(activity, PrikazJednogArtikla.class);
-                Bundle bundle = new Bundle();
-                //bundle.putInt("ArtikalId", Integer.parseInt(resultp.get(this.ArtikalId)));
-                bundle.putString("teer", resultp.get(this.IdSenzorTip_str));
-                intent.putExtras(bundle);
-                //activity.startActivity(intent);*/
+//                Intent intent = null;
+//                //intent = new Intent(activity, PrikazJednogArtikla.class);
+//                Bundle bundle = new Bundle();
+//                //bundle.putInt("ArtikalId", Integer.parseInt(resultp.get(this.ArtikalId)));
+//                bundle.putString("teer", resultp.get(this.IdSenzorTip_str));
+//                intent.putExtras(bundle);
+//                //activity.startActivity(intent);
 
             }
         });
 
 
-        return view;
+        return listItem;
     }
 }
 

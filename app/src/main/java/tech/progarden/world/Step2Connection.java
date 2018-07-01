@@ -214,7 +214,7 @@ public class Step2Connection extends AppCompatActivity {
 
                     } else {
                         pDialog.hideDialog();
-                        pDialog.showDialog("Status is not OK. Please Try Again. Click on Button");
+                        pDialog.showDialog("Status is not OK. Garden Sensor in NOT CONNECTER TO HOME WIFI. Restart GardenSenzor or Home Wifi Router to fix problem and try again");
                         Log.d("testmiki Status  ", "Status not ok");
                     }
                 } catch (JSONException e) {
