@@ -24,6 +24,7 @@ class ViewAdapterSensorDetail extends ArrayAdapter<ListaVarijabli> {
 
 
     TextView opisnotifikacije_tv, dopodaciideal_tv, odpodaciideal_tv, vrednostsenzor_tv, senzortipime_tv, imekulture_tv, vremesenzor_tv;
+    TextView dopodaciideal_crv_donj_tv, dopodaciideal_crv_gor_tv;
 
     Context context;
     private LayoutInflater inflater;
@@ -49,14 +50,19 @@ class ViewAdapterSensorDetail extends ArrayAdapter<ListaVarijabli> {
 
         // GET INFORMATIONS
         String opisnotifikacije_str = jedanKomad.getOpisNotifikacije();
+
         int odpodaciideal_str = jedanKomad.getOdPodaciIdeal();
         int dopodaciideal_str = jedanKomad.getDoPodaciIdeal();
+        int odzutoIdeal_str = jedanKomad.getOdZutoIdeal();
+        int dozutoIdeal_str = jedanKomad.getDoZutoIdeal();
+
         float vrednostsenzor_str = jedanKomad.getVrednostSenzor();
         Log.d("testmiki", String.valueOf(vrednostsenzor_str));
         String senzortipime_str = jedanKomad.getSenzorTipIme();
         //String imekulture_str = resultp.get("ImeKulture");
         String vremesenzor_str = jedanKomad.getVremeSenzor();
         int IdSenNotNotifikacija = jedanKomad.getIdSenNotNotifikacija();
+
 
 
         String colortype;
@@ -89,6 +95,9 @@ class ViewAdapterSensorDetail extends ArrayAdapter<ListaVarijabli> {
         odpodaciideal_tv = (TextView) listItem.findViewById(R.id.odpodaciideal_tv);
         dopodaciideal_tv = (TextView) listItem.findViewById(R.id.dopodaciideal_tv);
 
+        dopodaciideal_crv_donj_tv = (TextView) listItem.findViewById(R.id.dopodaciideal_crv_donj);
+        dopodaciideal_crv_gor_tv = (TextView) listItem.findViewById(R.id.dopodaciideal_crv_gor);
+
         vrednostsenzor_tv = (TextView) listItem.findViewById(R.id.vrednostsenzor_tv);
         vrednostsenzor_tv.setTypeface(null, Typeface.BOLD);
         vrednostsenzor_tv.setTextColor(Color.parseColor(colortype));
@@ -113,6 +122,12 @@ class ViewAdapterSensorDetail extends ArrayAdapter<ListaVarijabli> {
         dopodaciideal_tv.setText(String.valueOf(dopodaciideal_str));
         dopodaciideal_tv.setTextSize(10);
 
+        dopodaciideal_crv_donj_tv.setText(" < "+String.valueOf(odzutoIdeal_str));
+        dopodaciideal_crv_donj_tv.setTextSize(10);
+
+        dopodaciideal_crv_gor_tv.setText(String.valueOf(dozutoIdeal_str)+" > ");
+        dopodaciideal_crv_gor_tv.setTextSize(10);
+
         vrednostsenzor_tv.setText(String.valueOf(vrednostsenzor_str));
         senzortipime_tv.setText(senzortipime_str);
         //imekulture_tv.setText(imekulture_str);
@@ -136,7 +151,7 @@ class ViewAdapterSensorDetail extends ArrayAdapter<ListaVarijabli> {
         //SimpleDateFormat dateF = new SimpleDateFormat("EEE, d MMM yyyy", vremesenzor_str); // "HH:mm"
         //String date = dateF.format(Calendar.getInstance().getTime());
         vremesenzor_tv.setText("Date Time : "+newFormat);
-        vremesenzor_tv.setTextSize(8);
+        vremesenzor_tv.setTextSize(10);
 
         listItem.setOnClickListener(new View.OnClickListener() {
 

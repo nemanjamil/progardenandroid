@@ -9,7 +9,7 @@ import android.view.Menu;
 public class Splash extends AppCompatActivity {
 
     /** Duration of wait **/
-    private final int SPLASH_DISPLAY_LENGTH = 3000;
+    private final int SPLASH_DISPLAY_LENGTH = 1500;
 
 
     @Override

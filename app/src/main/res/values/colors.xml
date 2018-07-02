@@ -28,6 +28,8 @@
     <color name="snackbar_fg_color">#e0f7fa</color>
 
     <color name="white">#FFF</color>
+    <color name="yellow">#ffd504</color>
+    <color name="green">#039401</color>
 
 
 </resources>

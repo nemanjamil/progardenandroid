@@ -39,29 +39,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="3"
+            android:layout_weight="16"
             app:layout_constraintTop_toTopOf="@id/vremesenzor_tv">
 
             <TextView
                 android:id="@+id/tekstodpodaciideal_tv"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="8"
                 android:text="@string/idealnavrenost" />
 
             <TextView
-                android:id="@+id/odpodaciideal_tv"
-                android:layout_width="match_parent"
+                android:id="@+id/dopodaciideal_crv_donj"
+                android:layout_width="0dp"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:textColor="@color/yellow"
+                android:layout_weight="2" />
+
+            <TextView
+                android:id="@+id/odpodaciideal_tv"
+                android:layout_width="0dp"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:textColor="@color/green"
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/dopodaciideal_tv"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:textColor="@color/green"
+                android:layout_weight="2" />
+            <TextView
+                android:id="@+id/dopodaciideal_crv_gor"
+                android:layout_width="0dp"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:textColor="@color/yellow"
+                android:layout_weight="2" />
+
+
 
         </LinearLayout>
 
@@ -73,18 +92,19 @@
 
             <TextView
                 android:id="@+id/senzortipime_tv"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
                 android:text="@string/currentvalue" />
 
             <TextView
                 android:id="@+id/vrednostsenzor_tv"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAlignment="center"
                 android:layout_weight="1"
-                android:gravity="left" />
+                android:text="Vrednost" />
         </LinearLayout>
 
 
