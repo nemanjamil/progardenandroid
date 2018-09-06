@@ -8,7 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -43,7 +46,7 @@ public class SensorDetailActivity extends AppCompatActivity {
     JSONArray jsonArrayIn;
     ArrayList arraylist;
     ArrayList<ListaVarijabli>  listaVarijabli;
-
+    private ProgressBar spinner;
 //    Button buttonGraph;
 
     ListView listView;
@@ -58,6 +61,8 @@ public class SensorDetailActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         myToolbar.setTitle(R.string.title_activity_sensor_detail);
         setSupportActionBar(myToolbar);
+
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
 
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
@@ -264,6 +269,9 @@ public class SensorDetailActivity extends AppCompatActivity {
             if (llv.getVrednostSenzor() > 0) {
                 adapter = new ViewAdapterSensorDetail(SensorDetailActivity.this, arraylist);
                 listView.setAdapter(adapter);
+
+
+                spinner.setVisibility(View.GONE);
             } else {
                 Toast.makeText(getApplicationContext(), "Wating Sensor to sent data to server. There is no data from sensor", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),DrawerActivity.class);
@@ -284,9 +292,9 @@ public class SensorDetailActivity extends AppCompatActivity {
             case android.R.id.home:
                 super.onBackPressed();
                 return true;
-            case R.id.action_show_graph:
-                showGraph();
-                return true;
+//            case R.id.action_show_graph:
+//                showGraph();
+//                return true;
             case R.id.action_show_manual:
                 showMaintenance();
                 return true;
