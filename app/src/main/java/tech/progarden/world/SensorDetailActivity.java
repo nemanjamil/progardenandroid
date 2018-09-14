@@ -292,9 +292,9 @@ public class SensorDetailActivity extends AppCompatActivity {
             case android.R.id.home:
                 super.onBackPressed();
                 return true;
-//            case R.id.action_show_graph:
-//                showGraph();
-//                return true;
+            case R.id.action_show_graph:
+                showGraph();
+                return true;
             case R.id.action_show_manual:
                 showMaintenance();
                 return true;
