@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ProGarden</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_delete">Izbriši</string>
+    <string name="action_show_graph">Grafik</string>
+    <string name="text_settings">Podešavanje</string>
+    <string name="text_readings">Praćenje</string>
+    <string name="btn_text_connect">Poveži se</string>
+    <string name="btn_text_set_device">Setovanje\n uređaja</string>
+    <string name="btn_text_graphs">Grafici</string>
+    <string name="btn_text_notifications">Notifikacije</string>
+    <string name="full_name_hint">Ime</string>
+    <string name="last_name_hint">Prezime</string>
+    <string name="email_hint">Email</string>
+    <string name="pass_hint">Šifra</string>
+    <string name="btn_text_register">Registruj</string>
+    <string name="text_already_have_account">Ako već imate nalog:
+        <u>kliknite ovde.</u>
+    </string>
+    <string name="text_logged_in">Povezani ste</string>
+    <string name="btn_text_logout">Odveži se</string>
+    <string name="text_web_site">progarden.rs</string>
+    <string name="login_text">ProGarden</string>
+    <string name="btn_text_sign_in">Poveži se</string>
+    <string name="btn_text_register_here">Registruj me</string>
+
+    <!-- Line graph activity strings-->
+    <string name="graph_no_data">Nema podataka za prikaz.</string>
+    <string name="graph_description"></string>
+
+    <!-- Sensor list custom row strings -->
+    <string name="sensor_list_raw_text">Sensor name</string>
+    <string name="sensor_list_raw_description">Sensor MAC address</string>
+    <string name="sensor_list_raw_image_content_description">Sensor image</string>
+
+    <!-- Navigation menu_sensor_list_cab activity strings-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_sensor_ap_list">SensorApListActivity</string>
+    <string name="title_slider">ProGarden - Hydroponics</string>
+    <string name="subtitle_slider">progarden.site</string>
+    <string name="drawer_menu_logout">Odjavi se</string>
+    <string name="sensor_list">Sensor List</string>
+    <string name="drawer_menu_add">Dodaj senzor</string>
+    <string name="drawer_menu_settings">Podešavanja</string>
+    <string name="drawer_menu_networks">Networks</string>
+
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+    </string>
+    <string name="title_activity_drawer">Sensor List</string>
+    <string name="drawer_action_subtitle">Akcije</string>
+    <string name="progress_update_sensor_list">Učitavam listu…</string>
+    <string name="delete_confirmation_question">Ako potvrdite, izbrisaćete izabrane senzore.
+    </string>
+    <string name="yes">Da</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Otkaži</string>
+    <string name="delete_confirmation_title">Brisanje senzora?</string>
+    <string name="progress_delete_sensor">Brisanje senzora…</string>
+    <string name="progress_add_sensor_list">Dodajem novi senzor…</string>
+    <string name="sensor_scan_confirmation_title">Pretraga senzora</string>
+    <string name="sensor_scan_confirmation_question">Postavite senzor u mod za podešavanje. Potom
+        kliknite OK.
+    </string>
+    <string name="title_ap_activity">Izaberi senzor</string>
+    <string name="set_wifi_dialog_title">Podesi WiFi za</string>
+    <string name="sensor_config_msg">Podešavam senzor</string>
+
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_title_user_data">PODACI O KORISNIKU</string>
+    <string name="pref_title_firm_data">PODACI O FIRMI</string>
+    <string name="pref_user_data_name_summary">Korisnikovo ime</string>
+    <string name="pref_user_data_name_title">Ime korisnika</string>
+    <string name="pref_edit_text_value_unset">Nepopunjeno</string>
+
+    <string name="KEY_GENERAL_NAME">KomitentNaziv</string>
+    <string name="KEY_NAME">KomitentIme</string>
+    <string name="KEY_LAST_NAME">KomitentPrezime</string>
+    <string name="KEY_ADDRESS">KomitentAdresa</string>
+    <string name="KEY_ZIP_CODE">KomitentPosBroj</string>
+    <string name="KEY_CITY">KomitentMesto</string>
+    <string name="KEY_PHONE">KomitentTelefon</string>
+    <string name="KEY_MOBILE">KomitentMobTel</string>
+    <string name="KEY_EMAIL">KomitentEmail</string>
+    <string name="KEY_USERNAME">KomitentUserName</string>
+    <string name="KEY_USER_TYPE">KomitentTipUsera</string>
+    <string name="KEY_FIRM_NAME">KomitentFirma</string>
+    <string name="KEY_FIRM_ID">KomitentMatBr</string>
+    <string name="KEY_FIRM_PIB">KomitentPIB</string>
+    <string name="KEY_FIRM_ADDRESS">KomitentFirmaAdresa</string>
+    <string name="KEY_PLANTS">KomitentListaKultura</string>
+
+    <string name="pref_user_data_last_name_title">Prezime korisnika</string>
+    <string name="pref_user_data_address_title">Adresa</string>
+    <string name="pref_user_data_zip_title">Poštanski broj</string>
+    <string name="pref_user_data_city_title">Mesto</string>
+    <string name="pref_user_data_phone_title">Telefon</string>
+    <string name="pref_user_data_mobile_title">Mobilni</string>
+    <string name="pref_firm_data_name_title">Naziv firme</string>
+    <string name="pref_firm_data_address_title">Adresa</string>
+    <string name="pref_firm_data_ID_title">Matični broj</string>
+    <string name="pref_firm_data_PIB_title">PIB</string>
+    <string name="pref_firm_data_available_title">Koristi podatke o firmi</string>
+    <string name="pref_firm_data_toggle_summ">Isključeno</string>
+    <string name="title_activity_user_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="action_change">Izmeni</string>
+    <string name="pick_plant_title">Izaberi kulturu</string>
+    <string name="progress_update_sensor">Izmena kulture...</string>
+    <string name="progress_update_user_data">Menjam podatke...</string>
+    <string name="sensorprefix">GardenLocal</string>
+    <string name="title_activity_sensor_detail">Sensors</string>
+    <string name="title_maintanance">Manual Control</string>
+    <string name="list_of_networks">Network List</string>
+    <string name="title_nodemcu_conn">NodeMcu Sending Data</string>
+    <string name="title_steptwo">Step 2</string>
+    <string name="title_networks">Network List</string>
+    <string name="pleaseWait">Please Wait</string>
+    <string name="tvKategName">NameExample</string>
+    <string name="graph">Graph</string>
+    <string name="idealnavrenost">Ideal Values for : </string>
+    <string name="currentvalue">Current Value</string>
+    <string name="buttonmanual">manage</string>
+    <string name="managewithsensor">Manage With Sensor</string>
+    <string name="switchwaterpump">Water Pump</string>
+    <string name="onwaterpump">ON - with pause</string>
+    <string name="offwaterpump">OFF</string>
+    <string name="onwaterpumpwithout">ON - full work</string>
+    <string name="onpumpmin">ON pump (minutes)</string>
+    <string name="offpumpminutes">OFF pump (minutes)</string>
+    <string name="buttonpumpsubmit">Submit Pump Changes</string>
+    <string name="check_status_of_connection">Step 2 - Check Status of connection</string>
+    <string name="state_of_pump">State of Pump</string>
+    <string name="nastavinakorak3">Step 3 - Disconnect from Garden-Wifi and Connect to Home-Wifi</string>
+    <string name="nastavinakorak4">Step 4 - Sent Data to Server</string>
+
+</resources>
